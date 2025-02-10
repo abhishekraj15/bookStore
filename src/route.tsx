@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -11,6 +11,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
+      {
+        index: true, // This makes /dashboard redirect to /dashboard/home
+        element: <Navigate to="home" replace />,
+      },
       {
         path: "home",
         element: <HomePage />,
@@ -35,6 +39,10 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
     ],
+  },
+  {
+    path: "/",
+    element: <Navigate to="/dashboard/home" replace />,
   },
 ]);
 
