@@ -35,7 +35,7 @@ import {
 import { getBooks } from "@/http/api";
 import { Book } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { CirclePlus, MoreHorizontal, PlusCircle } from "lucide-react";
+import { CirclePlus, MoreHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 // import { useState } from "react";
 
