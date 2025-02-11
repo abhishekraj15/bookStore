@@ -32,13 +32,19 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 
 const DashboardLayout = () => {
-  const token = useTokenStore((state) => state.token);
+  const navigate = useNavigate();
+  const { token, setToken } = useTokenStore((state) => state);
   if (!token) {
     return <Navigate to={"/auth/login"} replace />;
   }
+
+  const handleLogout = () => {
+    setToken("");
+    navigate("/auth/login");
+  };
 
   return (
     <>
@@ -199,7 +205,9 @@ const DashboardLayout = () => {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
