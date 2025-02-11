@@ -8,9 +8,22 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleLoginSubmit = (e: any) => {
+    e.preventDefault();
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    console.log("Data is :", { email, password });
+
+    //server api call
+    
+  };
   return (
     <>
       <div className="flex items-center justify-center h-screen">
@@ -28,6 +41,7 @@ const LoginPage = () => {
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
+                      ref={emailRef}
                       id="email"
                       type="email"
                       placeholder="m@example.com"
@@ -37,26 +51,27 @@ const LoginPage = () => {
                   <div className="grid gap-2">
                     <div className="flex items-center">
                       <Label htmlFor="password">Password</Label>
-                      <a
-                        href="#"
-                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                      >
-                        Forgot your password?
-                      </a>
                     </div>
-                    <Input id="password" type="password" required />
+                    <Input
+                      ref={passwordRef}
+                      id="password"
+                      type="password"
+                      required
+                      name="password"
+                    />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Login
-                  </Button>
-                  <Button variant="outline" className="w-full">
-                    Login with Google
+                  <Button
+                    onClick={handleLoginSubmit}
+                    type="submit"
+                    className="w-full"
+                  >
+                    Sign In
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
                   Don&apos;t have an account?{" "}
                   <Link
-                    to={"/register"}
+                    to={"/auth/register"}
                     className="underline underline-offset-4"
                   >
                     Sign up
