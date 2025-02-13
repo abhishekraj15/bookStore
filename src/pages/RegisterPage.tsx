@@ -38,7 +38,6 @@ const RegisterPage = () => {
     const password = passwordRef.current?.value;
     console.log("Data is :", { name, email, password });
 
-    //server api call
     if (!name || !email || !password) {
       return alert("Please enter name , email and password");
     }
