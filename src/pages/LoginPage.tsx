@@ -33,7 +33,6 @@ const LoginPage = () => {
     e.preventDefault();
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    // console.log("Data is :", { email, password });
 
     //server api call
     if (!email || !password) {
