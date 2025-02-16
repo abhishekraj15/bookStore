@@ -40,7 +40,6 @@ import { CirclePlus, MoreHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BooksPage = () => {
-  // Explicitly type the API response
   const { data, isLoading, isError } = useQuery<{ data?: Book[] }>({
     queryKey: ["books"],
     queryFn: getBooks,
